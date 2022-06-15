@@ -1,4 +1,8 @@
 class Public::ItemsController < ApplicationController
+  
+def new
+    @item = Item.new(params[:id])
+end
 
 def create
   @item = Item.new(item_params)
@@ -15,15 +19,13 @@ end
 
 def index
   @customer = current_customer
-  @item = Item.new
   @items = Item.all
   @quantity = Item.count
 end
 
 def show
   @item = Item.find(params[:id])
-  @customer = @book.customer
-  @item_new = Item.new
+  @customer = @item.customer
 end
 
 def edit

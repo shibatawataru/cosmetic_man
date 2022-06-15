@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_06_14_110609) do
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_06_14_110609) do
 
   create_table "items", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "title", null: false
+    t.string "itemname", null: false
     t.text "body", null: false
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false

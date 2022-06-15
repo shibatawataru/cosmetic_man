@@ -1,0 +1,14 @@
+<h2>商品新規登録</h2>
+<%= form_with model: @item, url:public_items_path do |f| %>
+<%= f.file_field :product_image, placeholder:"商品画像", accept: "image/*" %>
+<%= f.label :name, '商品名' %>
+<%= f.text_field :name %>
+<%#= f.label :genre_id, 'ジャンル' %>
+<%#= f.collection_select :genre_id, Genre.all, :id, :genrename %>
+<%= f.label :body, '商品概要' %>
+<%= f.text_area :body %>
+<%= f.label :price, '商品価格' %>
+<%= f.text_field :price %>円
+
+<%= f.submit "新規登録" %>
+<% end %>
