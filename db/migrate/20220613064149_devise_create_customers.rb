@@ -9,6 +9,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       
       # 追加カラム
       t.string :name, null: false
+      t.string :introduction
 
       ## Recoverable
       t.string   :reset_password_token

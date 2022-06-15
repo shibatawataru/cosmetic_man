@@ -5,9 +5,9 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
-  has_many :books, dependent: :destroy
+  has_many :items, dependent: :destroy
   validates :name, uniqueness: true, length: { in: 1..20 }
-  
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')
@@ -15,7 +15,7 @@ class Customer < ApplicationRecord
     end
      profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  
+
+
 
 end

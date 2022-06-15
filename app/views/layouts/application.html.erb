@@ -11,6 +11,55 @@
   </head>
 
   <body>
+    <header>
+          <% if customer_signed_in? %>
+            <li class="nav-item">
+              <%= link_to public_customer_path(current_customer), class:"nav-link mx-2 text-white" do %>
+                <span><i class="fas fa-user"></i> マイページ </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to public_items_path, class:"nav-link mx-2 text-white" do %>
+                <span><i class="fas fa-birthday-cake"></i> 商品一覧 </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_customer_session_path, method: :delete, class:"nav-link text-white" do %>
+                <span><i class="fas fa-sign-out-alt"></i> ログアウト </span>
+              <% end %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to admin_items_path, class:"nav-link text-white" do %>
+                <span><i class="fas fa-birthday-cake"></i> 商品一覧 </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_customers_path, class:"nav-link text-white" do %>
+                <span><i class="fas fa-users"></i> 会員一覧 </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-white" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to public_items_path, class:"nav-link text-white" do %>
+                <span><i class="fas fa-birthday-cake"></i> 商品一覧 </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_customer_registration_path, class:"nav-link mx-2 text-white" do %>
+                <span><i class="fas fa-user-plus"></i> 新規登録 </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_customer_session_path, class:"nav-link mx-2 text-white" do %>
+                <span><i class="fas fa-sign-in-alt"></i> ログイン </span>
+              <% end %>
+            </li>
+          <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
