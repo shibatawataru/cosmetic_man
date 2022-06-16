@@ -1,5 +1,5 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!, except: [:index]
+
 def new
     @item = Item.new(params[:id])
 end
@@ -9,7 +9,7 @@ def create
   @item.customer_id = current_customer.id
   if @item.save
   flash[:notice] = "You have created item successfully."
-  redirect_to item_path(@item.id)
+  redirect_to public_item_path(@item.id)
   else
   @customer = current_customer
   @items = item.all
@@ -36,7 +36,7 @@ def update
   @item = Item.find(params[:id])
   if @item.update(item_params)
   flash[:notice] = "You have updated item successfully."
-  redirect_to item_path(@item.id)
+  redirect_to public_item_path(@item.id)
   else
   render :edit
   end
@@ -45,7 +45,7 @@ end
 def destroy
   item = Item.find(params[:id])
   item.destroy
-  redirect_to items_path
+  redirect_to public_items_path
 end
 
 end
@@ -53,5 +53,5 @@ end
 private
 
 def item_params
-  params.require(:item).permit(:title, :body)
+  params.require(:item).permit(:body, :itemname, :price, :product_image)
 end

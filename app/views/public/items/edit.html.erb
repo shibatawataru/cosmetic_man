@@ -1,5 +1,5 @@
  <h2 class="my-4">商品編集</h2>
-    
+
         <%= form_with model: @item, url:public_item_path(@item.id) do |f| %>
             <tr>
               <th>商品画像</th>
@@ -7,15 +7,15 @@
             </tr>
             <tr>
               <th>商品名</th>
-              <td><%= f.text_field :name %></td>
+              <td><%= f.text_field :itemname %></td>
             </tr>
             <tr>
               <th>商品概要</th>
               <td><%= f.text_area :body, size: 25 %></td>
             </tr>
             <tr>
-              <th>ジャンル</th>
-              <td><%#= f.collection_select :genre_id, Genre.all, :id, :genrename %></td>
+              <th>タグ</th>
+              <td><%#= f.collection_select :tag_id, Tag.all, :id, :name %></td>
             </tr>
             <tr>
               <th>商品価格</th>
