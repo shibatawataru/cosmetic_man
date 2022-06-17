@@ -26,6 +26,7 @@ end
 def show
   @item = Item.find(params[:id])
   @customer = @item.customer
+  @comment = Comment.new
 end
 
 def edit

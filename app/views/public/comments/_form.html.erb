@@ -1,0 +1,8 @@
+<%= form_with model: item.comments.new, url: public_item_comments_path(item), local: false do |f| %>
+<!--エラーメッセージをdivタグで囲む-->
+  <div id="comments-error">
+    <%= render 'layouts/error_messages', model: f.object %>
+  </div>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>

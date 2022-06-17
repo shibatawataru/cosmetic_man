@@ -16,8 +16,10 @@ Rails.application.routes.draw do
 }
 
   namespace :public do
-    resources :items, only: [:new,:index,:show,:edit,:create,:update,:destroy]
-       end
+    resources :items, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
+  end
 
   namespace :public do
     resources :customers

@@ -9,7 +9,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+    <main>
+      <!--フラッシュメッセージの部分をdivタグで囲む-->
+      <div id="flash-message">
+        <%= render 'layouts/flash' %>
+      </div>
+      <%= yield %>
+    </main>
   <body>
     <header>
           <% if customer_signed_in? %>
@@ -60,6 +66,6 @@
             </li>
           <% end %>
     </header>
-    <%= yield %>
+   <%= yield %>
   </body>
 </html>
