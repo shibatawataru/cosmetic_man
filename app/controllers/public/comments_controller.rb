@@ -11,17 +11,21 @@ class Public::CommentsController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
   def destroy
-    Comment.find_by(id: params[:id], post_id: params[:post_id]).destroy
+    Comment.find_by(id: params[:id], item_id: params[:item_id]).destroy
     flash.now[:alert] = '投稿を削除しました'
     #renderしたときに@postのデータがないので@postを定義
-    @item = Post.find(params[:item_id])  
+    @item = Item.find(params[:item_id])
     render :item_comments  #render先にjsファイルを指定
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment_content)
   end
 end

@@ -3,9 +3,9 @@
           <h3><%= @item.body %></h3><br>
             <h2>¥<%= @item.price %></h2><br>
 <div class="new-comment">
-  <%= render 'comments/form', item: @item, comment: @comment %>
+  <%= render 'public/comments/form', item: @item, comment: @comment %>
 </div>
 <!--コメント一覧部分-->
 <div class="comments">
-  <%= render 'comments/item_comments', item: @item %>
+  <%= render 'public/comments/item_comments', item: @item %>
 </div>
