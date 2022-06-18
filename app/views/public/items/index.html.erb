@@ -5,5 +5,15 @@
   <% end %><br>
     <%= item.itemname %><br>
     <%= item.price %>円
-  
+    <td class="item-evaluation" data-score="<%= item.evaluation %>"></td>
+
   <% end %>
+  <script>
+  $('.item-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
