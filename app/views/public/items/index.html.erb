@@ -4,6 +4,7 @@
 <%=list.name %>
 <%="(#{list.items.count})" %><% end %>
 
+投稿一覧画面で投稿に紐づくタグを表示
 <% @items.each do |item| %>
 <i class="fas fa-tag"><%= item.tags.map(&:name).join(', ') %></i>
 
