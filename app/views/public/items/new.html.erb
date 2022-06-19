@@ -9,16 +9,21 @@
 <%= f.text_area :body %>
 <%= f.label :price, '商品価格' %>
 <%= f.text_field :price %>円
-<div id="evaluate_stars">
-    <label>評価</label>
+<div class="form-group row" id="star">
+    <%= f.label :evaluation,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :evaluation, id: :item_evaluation %>
 </div>
 <%= f.submit "新規投稿" %>
 <% end %>
-<script>
-  $('#evaluate_stars').raty({
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
+  <!-- 評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
     starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'item[evaluation]' //登録するモデル名とカラム名を記述
+
+    scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
+    half: true,
   });
-</script>
+  </script>

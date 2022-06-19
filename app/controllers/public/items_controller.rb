@@ -7,13 +7,15 @@ end
 def create
   @item = Item.new(item_params)
   @item.customer_id = current_customer.id
+  tag_list=params[:item][:name].split(',')
   if @item.save
+  @item.save_tag(tag_list)
   flash[:notice] = "You have created item successfully."
   redirect_to public_item_path(@item.id)
   else
   @customer = current_customer
   @items = item.all
-  render :index
+  render :new
   end
 end
 
@@ -21,6 +23,7 @@ def index
   @customer = current_customer
   @items = Item.all
   @quantity = Item.count
+  @tag_list=Tag.all
 end
 
 def show

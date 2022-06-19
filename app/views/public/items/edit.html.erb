@@ -15,12 +15,30 @@
             </tr>
             <tr>
               <th>タグ</th>
-              <td><%#= f.collection_select :tag_id, Tag.all, :id, :name %></td>
+              <td><%= f.collection_select :tag_id, Tag.all, :id, :name %></td>
             </tr>
             <tr>
               <th>商品価格</th>
               <td><%= f.text_field :price %>円</td>
             </tr>
-          </table>
+            <tr>
+              <td>評価</td>
+              <td><%= f.hidden_field :evaluation, id: :item_evaluation %>
+                  <div id='evaluation-rate<%= @item.id %>'></div>
+           </td>
+           </tr>
+            </table>
         <%= f.submit "変更を保存",class: "btn btn-primary btn-block" %>
         <% end %>
+ <script>
+  $("#evaluation-rate<%= @item.id %>").raty({
+    number: 5,
+    score: <%= @item.evaluation %>,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: "<%= asset_path('star-half.png') %>",
+
+    scoreName: 'item[evaluation]', //登録するモデル名とカラム名を記述
+    half: true,
+  });
+  </script>

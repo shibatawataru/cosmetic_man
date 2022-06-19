@@ -7,6 +7,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @item = @customer.items
+    @item_tags = @item.tags
   end
 
   def update

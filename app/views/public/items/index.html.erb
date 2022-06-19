@@ -1,5 +1,13 @@
 <h1>商品一覧（全 <%= @quantity %> 件）</h1>
- <% @items.each do |item| %>
+<!--タグリスト-->
+<% @tag_list.each do |list|%>
+<%=list.name %>
+<%="(#{list.items.count})" %><% end %>
+
+投稿一覧画面で投稿に紐づくタグを表示
+<% @items.each do |item| %>
+<i class="fas fa-tag"><%= item.tags.map(&:name).join(', ') %></i>
+
   <%= link_to public_item_path(item.id) do %>
     <%= image_tag item.get_product_image(200,200)%>
   <% end %><br>

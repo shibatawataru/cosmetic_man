@@ -1,28 +1,42 @@
-<h2>マイページ<h2/>
-	  
-<tbody>
-  <tr>
-    <%= image_tag @customer.get_profile_image(100, 100) %>
-  </tr>
-  <tr>
-	  <th>name</th>
-	  <th><%=@customer.name%></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%=@customer.introduction%></th>
-  </tr>
-</tbody>
-  
-<tbody>
-  <%# @items.each do |item| %>
-  <tr>
-    <td><%#= link_to customer_path(item.customerid) do %>
-        <%#= image_tag item.customer.get_profile_image(100,100) %>
-        <%# end %>
-    </td>
-    <td><%#= link_to item.name, item_path(item.id) %></td>
-    <td><%#= item.body %></td>
-  </tr>
-  <%# end %>
-</tbody>
+<%= render 'public/customers/customerinfo', customer: @customer %>
+
+  <h2>Item list</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item image<th>
+        <th>Item name</th>
+        <th>Item price</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @item.each do |item| %>
+       <tr>
+         <td><%= image_tag item.get_product_image(200,200) %></td>
+         <td>
+           <%= link_to public_item_path(item) do %>
+           <%= item.itemname %>
+           <% end %>
+         </td>
+         <td>¥<%= item.price %></td>
+          <td><%= item.evaluation %>
+          <div id='evaluation-rate<%= item.id %>'></div>
+          <script>
+          $("#evaluation-rate<%= item.id %>").raty({
+          number: 5,
+          score: <%= item.evaluation %>,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: "<%= asset_path('star-half.png') %>",
+          readOnly: true,
+
+          scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
+          half: true,
+          });
+          </script>
+          </td>
+       </tr>
+      <% end %>
+    </tbody>
+  </table>

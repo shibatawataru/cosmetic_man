@@ -1,0 +1,15 @@
+ <h2>マイページ</h2>
+  <tr><%= image_tag @customer.get_profile_image(100, 100) %> </tr>
+  <table>
+    <tbody>
+      <tr>
+	     <th>name</th>
+	     <th><%=@customer.name%></th>
+      </tr>
+      <tr>
+  	  <th>introduction</th>
+  	  <th><%=@customer.introduction%></th>
+  	  </tr>
+	  </tbody>
+  </table>
+    <%= link_to "Profile editing", edit_public_customer_path(@customer) %>

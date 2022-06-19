@@ -1,7 +1,25 @@
-  <%= image_tag @item.get_product_image(200,200) %><br>
-          <h1><%= @item.itemname %></h1><br>
-          <h3><%= @item.body %></h3><br>
-            <h2>¥<%= @item.price %></h2><br>
+ <% @item_tags.each do |tag| %>
+  <%=tag.name%><%="(#{tag.items.count})" %><% end %>
+ <%= image_tag @item.get_product_image(200,200) %><br>
+  <h1><%= @item.itemname %></h1><br>
+  <h3><%= @item.body %></h3><br>
+  <h2>¥<%= @item.price %></h2><br>
+  <p>評価 :<%= @item.evaluation %>点</p>
+    <div id="evaluation-rate<%= @item.id %>"></div>
+  <script>
+  $("#evaluation-rate<%= @item.id %>").raty({
+    number: 5,
+    score: <%= @item.evaluation %>,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: "<%= asset_path('star-half.png') %>",
+    readOnly: true,
+
+    scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
+    half: true,
+  });
+  </script>
+
 <div class="new-comment">
   <%= render 'public/comments/form', item: @item, comment: @comment %>
 </div>

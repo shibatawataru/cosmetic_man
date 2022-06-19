@@ -4,12 +4,12 @@
 <tr>
  <th><%= "名前" %></th>
  <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"name" %></td>
- 
+
  <th><%= "プロフィール画像" %></th>
  <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
- 
+
  <td><%= "Introduction" %></td>
  <td><%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"introduction"%></td>
- 
+
  <%= f.submit "プロフィール更新" %>
 <% end %>
