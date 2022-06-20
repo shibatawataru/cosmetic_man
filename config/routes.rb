@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
 
-  devise_scope :customers do
+  devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
@@ -23,6 +23,18 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :customers
+  end
+
+  namespace :admin do
+    resources :items, only: [:index, :show, :destroy]
+  end
+
+  namespace :admin do
+    resources :customers
+  end
+
+  namespace :admin do
+    resources :tags, only: [:index, :edit, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

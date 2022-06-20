@@ -3,7 +3,7 @@
         <%= form_with model: @item, url:public_item_path(@item.id) do |f| %>
             <tr>
               <th>商品画像</th>
-              <td><%= f.file_field :product_image, placeholder:"商品画像", accept: "image/*"%></td>
+              <td><%= f.file_field :product_image, placeholder:"Item image", accept: "image/*"%></td>
             </tr>
             <tr>
               <th>商品名</th>
@@ -14,7 +14,7 @@
               <td><%= f.text_area :body, size: 25 %></td>
             </tr>
             <tr>
-              <th>タグ</th>
+              <th>ジャンル</th>
               <td><%= f.collection_select :tag_id, Tag.all, :id, :name %></td>
             </tr>
             <tr>
@@ -24,13 +24,14 @@
             <tr>
               <td>評価</td>
               <td><%= f.hidden_field :evaluation, id: :item_evaluation %>
-                  <div id='evaluation-rate<%= @item.id %>'></div>
+              <div id='evaluation-rate<%= @item.id %>'></div>
            </td>
            </tr>
             </table>
         <%= f.submit "変更を保存",class: "btn btn-primary btn-block" %>
         <% end %>
  <script>
+  $('.post_cosme-evaluation').empty();
   $("#evaluation-rate<%= @item.id %>").raty({
     number: 5,
     score: <%= @item.evaluation %>,

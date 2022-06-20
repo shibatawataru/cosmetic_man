@@ -1,0 +1,22 @@
+           <h2>ジャンル一覧・追加</h2>
+            <%= form_with url: admin_tags_path(@tag), model: @tag do |f| %>
+                <table>
+                    <tr>
+                        <th><%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %></th>
+                        <td><%= f.submit "新規登録", class:"btn btn-danger" %></td>
+                    </tr>
+                </table>
+            <% end %>
+        </div>
+    </div>
+    <div>
+        <table>
+            <% @tags.each do |tag| %>
+                <tr>
+                    <th><%= tag.name %></th>
+                    <td><%= link_to "編集", edit_admin_tag_path(tag), class:"btn btn-danger py-1" %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

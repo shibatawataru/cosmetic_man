@@ -1,6 +1,6 @@
- <h2>商品詳細</h2>
+<h2>商品詳細</h2>
  <% @item_tags.each do |tag| %>
- <%=tag.name%><%="(#{tag.items.count})" %><# end %>
+ <%=tag.name%><%="(#{tag.items.count})" %><% end %>
  <div><%= image_tag @item.get_product_image(200,200) %></div>
  <table>
    <tr>
@@ -32,18 +32,9 @@
     </tr>
   </table>
   
-  <div><% if @item.customer == current_customer %>
-      <%= link_to "商品編集", edit_public_item_path(@item), class: "btn btn-sm btn-success" %>
-      <% end %>
+  <div>
+    <%= link_to "商品削除", admin_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
   </div>
-  <div><% if @item.customer == current_customer %>
-      <%= link_to "商品削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
-      <% end %>
-  </div>
-
-<div class="new-comment">
-  <%= render 'public/comments/form', item: @item, comment: @comment %>
-</div>
 <!--コメント一覧部分-->
 <div class="comments">
   <%= render 'public/comments/item_comments', item: @item %>

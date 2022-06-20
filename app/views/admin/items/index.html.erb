@@ -1,12 +1,11 @@
 <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
-<%= link_to "+", new_public_item_path, class: " btn btn-default bg-danger text-white", style: "border-radius: 100%" %>
 <!--タグリスト-->
 <% @tag_list.each do |list|%>
 <%=list.name %>
 <%="(#{list.items.count})" %><% end %>
 
 投稿一覧画面で投稿に紐づくタグを表示
-  <table class='table'>
+<table class='table'>
     <thead>
       <tr>
         <th>商品画像<th>
@@ -19,7 +18,7 @@
     <tbody>
      <% @items.each do |item| %>
       <tr>
-        <td><%= link_to public_item_path(item.id) do %>
+        <td><%= link_to admin_item_path(item.id) do %>
           <%= image_tag item.get_product_image(200,200)%>
           <% end %></td>
         <td><%= item.itemname %></td>

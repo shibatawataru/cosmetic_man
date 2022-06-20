@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CosmeticMan</title>
+    <title>Cosmeticman</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,6 @@
       <div id="flash-message">
         <%= render 'layouts/flash' %>
       </div>
-      <%= yield %>
     </main>
   <body>
     <header>
@@ -34,7 +33,7 @@
                 <span><i class="fas fa-sign-out-alt"></i> ログアウト </span>
               <% end %>
             </li>
-          <% elsif admin_signed_in? %>
+            <% elsif admin_signed_in? %>
             <li class="nav-item">
               <%= link_to admin_items_path, class:"nav-link text-white" do %>
                 <span><i class="fas fa-birthday-cake"></i> 商品一覧 </span>
@@ -56,7 +55,7 @@
             </li>
             <li class="nav-item">
               <%= link_to new_customer_registration_path, class:"nav-link mx-2 text-white" do %>
-                <span><i class="fas fa-user-plus"></i> 新規登録 </span>
+                <span><i class="fas fa-user-plus"></i> 会員登録 </span>
               <% end %>
             </li>
             <li class="nav-item">
@@ -66,6 +65,6 @@
             </li>
           <% end %>
     </header>
-   <%#= yield %>
+   <%= yield %>
   </body>
 </html>

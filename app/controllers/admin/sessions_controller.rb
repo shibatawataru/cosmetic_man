@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+
+   private
+
+  # ログイン後のリダイレクト先
+  def after_sign_in_path_for(resource_or_scope)
+      admin_items_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
