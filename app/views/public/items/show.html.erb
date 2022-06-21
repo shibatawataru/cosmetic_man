@@ -1,6 +1,7 @@
  <h2>商品詳細</h2>
  <% @item_tags.each do |tag| %>
- <%=tag.name%><%="(#{tag.items.count})" %><# end %>
+ <%= tag.itemname %><%="(#{tag.items.count})" %>
+ <% end %>
  <div><%= image_tag @item.get_product_image(200,200) %></div>
  <table>
    <tr>
@@ -31,7 +32,7 @@
      </td>
     </tr>
   </table>
-  
+
   <div><% if @item.customer == current_customer %>
       <%= link_to "商品編集", edit_public_item_path(@item), class: "btn btn-sm btn-success" %>
       <% end %>

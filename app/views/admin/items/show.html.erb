@@ -1,6 +1,5 @@
 <h2>商品詳細</h2>
- <% @item_tags.each do |tag| %>
- <%=tag.name%><%="(#{tag.items.count})" %><% end %>
+ <%= @item_tag.name %><%="(#{@item_tag.items.count})" %>
  <div><%= image_tag @item.get_product_image(200,200) %></div>
  <table>
    <tr>
