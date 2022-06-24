@@ -9,7 +9,7 @@ class Public::ItemsController < ApplicationController
     @item.customer_id = current_customer.id
     #tag_list=params[:item][:name].split(',')
     if @item.save
-    #@item.save_tag(tag_list)
+    @item.save_tag(params[:item][:tag])
     flash[:notice] = "You have created item successfully."
     redirect_to public_item_path(@item.id)
     else
@@ -40,6 +40,7 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
+       @item.save_tags(params[:item][:tag])
     flash[:notice] = "You have updated item successfully."
     redirect_to public_item_path(@item.id)
     else
