@@ -1,51 +1,64 @@
- <h2>商品詳細</h2>
- <% @item_tags.each do |tag| %>
- <%= tag.name %><%="(#{tag.items.count})" %>
- <% end %>
- <div><%= image_tag @item.get_product_image(200,200) %></div>
- <table>
-   <tr>
-     <th>商品名</th>
-     <td><%= @item.itemname %></td>
-   </tr>
-   <tr>
-     <th>商品概要</th>
-     <td><%= @item.body %></td>
-   </tr>
-   <tr>
-     <th>商品価格</th>
-     <td>¥<%= @item.price %></td>
-   </tr>
-   <tr>
-     <th>評価</th>
-     <td class="item-evaluation" data-score="<%= @item.evaluation %>">
-      <script>
-      $('.post_cosme-evaluation').empty();
-      $('.item-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-      </script>
-     </td>
-    </tr>
-  </table>
-
-  <div><% if @item.customer == current_customer %>
-      <%= link_to "商品編集", edit_public_item_path(@item), class: "btn btn-sm btn-success" %>
-      <% end %>
-  </div>
-  <div><% if @item.customer == current_customer %>
-      <%= link_to "商品削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
-      <% end %>
+<div class="container">
+  <h2>商品詳細</h2>
+  <div>
+    <% @item.tags.each do |tag| %>
+      <%= "#{tag.name} ( #{tag.items.count} )" %>
+    <% end %>
   </div>
 
-<div class="new-comment">
-  <%= render 'public/comments/form', item: @item, comment: @comment %>
-</div>
-<!--コメント一覧部分-->
-<div class="comments">
-  <%= render 'public/comments/item_comments', item: @item %>
+  <div><%= image_tag @item.get_product_image(200,200), class: 'img-fluid' %></div>
+
+  <div class="row">
+    <div class="col-md-3">商品名</div>
+    <div class="col-md-9"><%= @item.itemname %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">商品概要</div>
+    <div class="col-md-9"><%= simple_format(@item.body) %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">商品価格</div>
+    <div class="col-md-9"><%= "#{@item.price} 円" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">評価</div>
+    <div class="col-md-9">
+      <span id="review_avg" data-score="<%= @item.evaluation %>"></span>
+    </div>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+    $('#review_avg').empty(); // Turbolinksで星が増殖する現象を解消
+    $('#review_avg').raty({
+      readOnly: true,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn: '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      // divタグのdata-score属性から評価の平均値を呼び出す
+      score: function () {
+        return $(this).attr('data-score');
+      },
+    });
+  </script>
+
+    <div><% if @item.customer == current_customer %>
+        <%= link_to "商品編集", edit_public_item_path(@item), class: "btn btn-sm btn-success" %>
+        <% end %>
+    </div>
+    <div><% if @item.customer == current_customer %>
+        <%= link_to "商品削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+        <% end %>
+    </div>
+
+  <div class="new-comment">
+    <%= render 'public/comments/form', item: @item, comment: @comment %>
+  </div>
+  <!--コメント一覧部分-->
+  <div class="comments">
+    <%= render 'public/comments/item_comments', item: @item %>
+  </div>
 </div>

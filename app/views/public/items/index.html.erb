@@ -1,9 +1,13 @@
-<h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
-<%= link_to "+", new_public_item_path, class: " btn btn-default bg-danger text-white", style: "border-radius: 100%" %>
-<!--タグリスト-->
-<% @tag_list.each do |list|%>
-<%=list.name %>
-<%="(#{list.items.count})" %><% end %>
+<div class='container'>
+ <div class="row">
+  <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
+  <div>
+  <%= link_to "+", new_public_item_path, class: " btn btn-default bg-danger text-white", style: "border-radius: 100%" %>
+  <!--タグリスト-->
+  <% @tag_list.each do |tag|%>
+    <%= link_to "#{tag.name} ( #{tag.items.count} )", public_items_tag_search_path(tag_id: tag.id) %>
+  <% end %>
+  </div>
 
   <table class='table'>
     <thead>
@@ -21,8 +25,8 @@
         <td><%= link_to public_item_path(item.id) do %>
           <%= image_tag item.get_product_image(200,200)%>
           <% end %></td>
-        <td><%= item.itemname %></td>
-        <td><i class="fas fa-tag"><%= item.tags.map(&:name).join(', ') %></i></td>
+        <td><%=item.itemname %></td>
+        <td><i class="fas fa-tag"></i> <%= link_to item.tags.map(&:name).join(', '), public_items_tag_search_path(tag_id: tag.id) %></td>
         <td><%= item.price %>円</td>
         <td class="item-evaluation-<%= item.id %>" data-score="<%= item.evaluation %>">
         <script>
@@ -32,7 +36,9 @@
           score: function() {
             return $(this).attr('data-score');
           },
-          path: '/assets/'
+          starOff: '<%= asset_path('star-off.png') %>',
+          starOn: '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
         });
         </script>
         </td>
@@ -40,3 +46,5 @@
      <% end %>
     </tbody>
   </table>
+ </div>
+</div>

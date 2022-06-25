@@ -1,10 +1,15 @@
-<h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
-<!--タグリスト-->
-<% @tag_list.each do |list|%>
-<%=list.name %>
-<%="(#{list.items.count})" %><% end %>
+<div class='container'>
+ <div class="row">
+  <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
+  <div>
+  
+  <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+  <%=list.name %>
+  <%="(#{list.items.count})" %><% end %>
+  </div>
 
-<table class='table'>
+  <table class='table'>
     <thead>
       <tr>
         <th>商品画像<th>
@@ -39,3 +44,5 @@
      <% end %>
     </tbody>
   </table>
+ </div>
+</div>

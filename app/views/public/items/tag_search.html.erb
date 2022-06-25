@@ -1,0 +1,23 @@
+<div class="container">
+  <h2><%= @tag_name.name %>の検索結果 ( <%= @items.count %> 件 )</h2>
+
+  <% if @items.count == 0 %>
+    <p>該当のタグの商品はありませんでした</p>
+  <% else %>
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_tag item.item.product_image, class: 'bd-placeholder-img card-img-top product-card-image' %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to item.item.itemname, public_item_path(item.item.id) %></h5>
+              <div class="card-text">
+                <%= simple_format(item.item.body) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

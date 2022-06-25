@@ -1,5 +1,7 @@
 <h2>商品詳細</h2>
- <%= @item_tag.name %><%="(#{@item_tag.items.count})" %>
+ <% @item.tags.each do |tag| %>
+   <%= "#{tag.name} ( #{tag.items.count} )" %>
+ <% end %>
  <div><%= image_tag @item.get_product_image(200,200) %></div>
  <table>
    <tr>
@@ -18,19 +20,21 @@
      <th>評価</th>
      <td class="item-evaluation" data-score="<%= @item.evaluation %>">
       <script>
-      $('.post_cosme-evaluation').empty();
+      $('.item-evaluation').empty();
       $('.item-evaluation').raty({
         readOnly: true,
         score: function() {
           return $(this).attr('data-score');
         },
-        path: '/assets/'
+        starOff: '<%= asset_path('star-off.png') %>',
+        starOn: '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
       });
       </script>
      </td>
     </tr>
   </table>
-  
+
   <div>
     <%= link_to "商品削除", admin_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
   </div>

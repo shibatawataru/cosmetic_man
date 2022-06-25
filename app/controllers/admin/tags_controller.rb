@@ -2,7 +2,7 @@ class Admin::TagsController < ApplicationController
 
   def index
     @tags = Tag.all
-    @Tag = Tag.new
+    @tag = Tag.new
   end
 
   def edit
@@ -13,7 +13,6 @@ class Admin::TagsController < ApplicationController
     @tag = Tag.new(tag_params)
     @tag.save
     redirect_to admin_tags_path
-
   end
 
   def update
@@ -25,7 +24,7 @@ class Admin::TagsController < ApplicationController
   private
 
   def tag_params
-    params.permit(:name)
+    params.require(:tag).permit(:name)
   end
 
 end

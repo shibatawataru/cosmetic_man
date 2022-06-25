@@ -7,18 +7,19 @@ Rails.application.routes.draw do
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions',
-  passwords: 'public/passwords'
-}
+    registrations: "public/registrations",
+    sessions: 'public/sessions',
+    passwords: 'public/passwords'
+  }
   devise_for :admins, skip: [:registrations, :passwords] , controllers: {
-  sessions: "admin/sessions"
-}
+    sessions: "admin/sessions"
+  }
 
   namespace :public do
+    get '/items/tag_search', to: 'items#tag_search'
     resources :items, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
-    resources :comments, only: [:create, :destroy]
-  end
+      resources :comments, only: [:create, :destroy]
+    end
   end
 
   namespace :public do

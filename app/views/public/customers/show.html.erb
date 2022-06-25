@@ -23,17 +23,17 @@
          <td><%= item.evaluation %>
          <div id='evaluation-rate<%= item.id %>'></div>
          <script>
-         $('.post_cosme-evaluation').empty();
+         $('#evaluation-rate<%= item.id %>').empty();
          $("#evaluation-rate<%= item.id %>").raty({
-         number: 5,
-         score: <%= item.evaluation %>,
-         starOff:  '<%= asset_path('star-off.png') %>',
-         starOn : '<%= asset_path('star-on.png') %>',
-         starHalf: "<%= asset_path('star-half.png') %>",
-         readOnly: true,
-  
-         scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
-         half: true,
+          number: 5,
+          score: <%= item.evaluation %>,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: "<%= asset_path('star-half.png') %>",
+          readOnly: true,
+
+          scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
+          half: true,
          });
          </script>
          </td>

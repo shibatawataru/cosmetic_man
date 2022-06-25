@@ -1,45 +1,37 @@
  <h2 class="my-4">商品編集</h2>
-
         <%= form_with model: @item, url:public_item_path(@item.id) do |f| %>
-            <tr>
-              <th>商品画像</th>
-              <td><%= f.file_field :product_image, placeholder:"Item image", accept: "image/*"%></td>
-            </tr>
-            <tr>
-              <th>商品名</th>
-              <td><%= f.text_field :itemname %></td>
-            </tr>
-            <tr>
-              <th>商品概要</th>
-              <td><%= f.text_area :body, size: 25 %></td>
-            </tr>
-            <tr>
-              <th>ジャンル</th>
-              <td><%= f.collection_select :tag_id, Tag.all, :id, :name %></td>
-            </tr>
-            <tr>
-              <th>商品価格</th>
-              <td><%= f.text_field :price %>円</td>
-            </tr>
-            <tr>
-              <td>評価</td>
-              <td><%= f.hidden_field :evaluation, id: :item_evaluation %>
-              <div id='evaluation-rate<%= @item.id %>'></div>
-           </td>
-           </tr>
-            </table>
-        <%= f.submit "変更を保存",class: "btn btn-primary btn-block" %>
-        <% end %>
- <script>
-  $('.post_cosme-evaluation').empty();
-  $("#evaluation-rate<%= @item.id %>").raty({
-    number: 5,
-    score: <%= @item.evaluation %>,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: "<%= asset_path('star-half.png') %>",
+          <%= f.fields_for :item_tags do |tag| %>
+            <div>
+              <%= tag.collection_check_boxes :tag_id, @tags, :id, :name, {checked: @item.item_tags.map{|v| v.tag_id}} do |tag_checkbox| %>
+                <%= tag_checkbox.label { tag_checkbox.check_box + tag_checkbox.text } %>
+              <% end %>
+            </div>
+          <% end %>
+            <div><%= f.file_field :product_image, placeholder:"商品画像", accept: "image/*" %></div>
+            <div><%= f.label :itemname, '商品名' %></div>
+            <div><%= f.text_field :itemname %></div>
+            <div><%= f.label :body, '商品概要' %></div>
+            <div><%= f.text_area :body %></div>
+            <div><%= f.label :price, '商品価格' %></div>
+            <div><%= f.text_field :price %>円</div>
+            <div class="form-group row">
+                <%= f.label :evaluation,'評価', class:'col-md-3 col-form-label' %>
+                <span id="star"></span>
+            </div>
 
-    scoreName: 'item[evaluation]', //登録するモデル名とカラム名を記述
-    half: true,
-  });
-  </script>
+            <%= f.submit "変更を保存" %>
+            <% end %>
+
+              <!-- 評価javascript -->
+              <script>
+              $('.item-evaluation').empty();
+              $('#star').raty({
+                size     : 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: <%= @item.evaluation %>,
+                scoreName: 'item[evaluation]', //登録するモデル名とカラム名を記述
+                half: true,
+              });
+              </script>
