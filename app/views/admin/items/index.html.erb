@@ -4,9 +4,9 @@
   <div>
   
   <!--タグリスト-->
-  <% @tag_list.each do |list|%>
-  <%=list.name %>
-  <%="(#{list.items.count})" %><% end %>
+  <% @tag_list.each do |tag|%>
+    <%= link_to "#{tag.name} ( #{tag.items.count} )", admin_items_tag_search_path(tag_id: tag.id) %>
+  <% end %>
   </div>
 
   <table class='table'>
@@ -26,7 +26,7 @@
           <%= image_tag item.get_product_image(200,200)%>
           <% end %></td>
         <td><%= item.itemname %></td>
-        <td><i class="fas fa-tag"><%= item.tags.map(&:name).join(', ') %></i></td>
+        <td><%= item.tags.map(&:name).join(', ') %></td>
         <td><%= item.price %>円</td>
         <td class="item-evaluation-<%= item.id %>" data-score="<%= item.evaluation %>">
         <script>

@@ -1,44 +1,55 @@
-<h2>商品詳細</h2>
- <% @item.tags.each do |tag| %>
-   <%= "#{tag.name} ( #{tag.items.count} )" %>
- <% end %>
- <div><%= image_tag @item.get_product_image(200,200) %></div>
- <table>
-   <tr>
-     <th>商品名</th>
-     <td><%= @item.itemname %></td>
-   </tr>
-   <tr>
-     <th>商品概要</th>
-     <td><%= @item.body %></td>
-   </tr>
-   <tr>
-     <th>商品価格</th>
-     <td>¥<%= @item.price %></td>
-   </tr>
-   <tr>
-     <th>評価</th>
-     <td class="item-evaluation" data-score="<%= @item.evaluation %>">
-      <script>
-      $('.item-evaluation').empty();
-      $('.item-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        starOff: '<%= asset_path('star-off.png') %>',
-        starOn: '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-      });
-      </script>
-     </td>
-    </tr>
-  </table>
-
+<div class="container">
+  <h2>商品詳細</h2>
   <div>
-    <%= link_to "商品削除", admin_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+    <% @item.tags.each do |tag| %>
+      <%= "#{tag.name} ( #{tag.items.count} )" %>
+    <% end %>
   </div>
-<!--コメント一覧部分-->
-<div class="comments">
-  <%= render 'public/comments/item_comments', item: @item %>
+
+  <div><%= image_tag @item.get_product_image(200,200), class: 'img-fluid' %></div>
+
+  <div class="row">
+    <div class="col-md-3">商品名</div>
+    <div class="col-md-9"><%= @item.itemname %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">商品概要</div>
+    <div class="col-md-9"><%= simple_format(@item.body) %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">商品価格</div>
+    <div class="col-md-9"><%= "#{@item.price} 円" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">評価</div>
+    <div class="col-md-9">
+      <span id="review_avg" data-score="<%= @item.evaluation %>"></span>
+    </div>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+    $('#review_avg').empty(); // Turbolinksで星が増殖する現象を解消
+    $('#review_avg').raty({
+      readOnly: true,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn: '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      // divタグのdata-score属性から評価の平均値を呼び出す
+      score: function () {
+        return $(this).attr('data-score');
+      },
+    });
+  </script>
+  
+    <div>
+        <%= link_to "削除", admin_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+    </div>
+  <!--コメント一覧部分-->
+  <div class="comments">
+    <%= render 'public/comments/item_comments', item: @item %>
+  </div>
 </div>

@@ -1,15 +1,16 @@
- <h2>マイページ</h2>
-  <tr><%= image_tag @customer.get_profile_image(100, 100) %> </tr>
-  <table>
-    <tbody>
-      <tr>
-	     <th>name</th>
-	     <th><%=@customer.name%></th>
-      </tr>
-      <tr>
-  	  <th>introduction</th>
-  	  <th><%=@customer.introduction%></th>
-  	  </tr>
-	  </tbody>
-  </table>
+<tr><%= image_tag @customer.get_profile_image(100, 100) %> </tr>
+ <table>
+  <tbody>
+    <tr>
+     <th>name</th>
+     <th><%=@customer.name%></th>
+    </tr>
+    <tr>
+	  <th>introduction</th>
+	  <th><%=@customer.introduction%></th>
+	  </tr>
+  </tbody>
+ </table>
+  <% if @customer.email != "guest@example.com" && @customer == current_customer %>
     <%= link_to "プロフィール編集", edit_public_customer_path(@customer) %>
+  <% end %>

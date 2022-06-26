@@ -23,7 +23,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @customer = current_customer
-    @items = Item.all
+    @items = Item.all.order("id DESC")
     @quantity = Item.count
     @tag_list = Tag.all
   end

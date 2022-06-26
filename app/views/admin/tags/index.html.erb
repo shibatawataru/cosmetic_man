@@ -6,7 +6,7 @@
                 <table class="table table-borderless">
                     <tr>
                         <th><%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %></th>
-                        <td><%= f.submit "新規登録", class:"btn btn-danger" %></td>
+                        <td><%= f.submit "新規登録", class:"btn btn-success" %></td>
                     </tr>
                 </table>
             <% end %>
@@ -17,7 +17,7 @@
             <% @tags.each do |tag| %>
                 <tr>
                     <th><%= tag.name %></th>
-                    <td><%= link_to "編集", edit_admin_tag_path(tag), class:"btn btn-danger py-1" %></td>
+                    <td><%= link_to "編集", edit_admin_tag_path(tag), class:"btn btn-primary py-1" %></td>
                 </tr>
             <% end %>
         </table>

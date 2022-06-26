@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+  before_action :admin_check
 
   def index
     @tags = Tag.all

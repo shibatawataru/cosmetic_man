@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/items/tag_search', to: 'items#tag_search'
     resources :items, only: [:index, :show, :destroy]
   end
 

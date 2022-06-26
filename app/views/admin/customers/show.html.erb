@@ -1,0 +1,36 @@
+<div class="row my-5">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+    <h4 class="bg-light w-75 text-center">
+      <%= @customer.name %>さんの会員詳細
+    </h4>
+  </div>
+  <div class="col-4">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+    <table class="table">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @customer.name %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </div>
+  <div class="col-4">
+  </div>
+</div>
