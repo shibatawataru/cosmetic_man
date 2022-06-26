@@ -2,7 +2,9 @@
  <div class="row">
   <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
   <div>
+  <% if @customer %>
   <%= link_to "+", new_public_item_path, class: " btn btn-default bg-success text-white", style: "border-radius: 100%" %>
+  <% end %>
   <!--タグリスト-->
   <% @tag_list.each do |tag|%>
     <%= link_to "#{tag.name} ( #{tag.items.count} )", public_items_tag_search_path(tag_id: tag.id) %>
