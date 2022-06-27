@@ -28,5 +28,7 @@
     <h4 class="bg-light d-flex align-items-center justify-content-center w-50">会員登録がお済みでない方</h4>
   </div>
 <div>
-<%= render "public/shared/links" %>から新規登録を行って下さい。
+<%= render "public/shared/links" %>から新規登録を行うか<br />
+ゲストとして<%= link_to 'こちらから', customers_guest_sign_in_path, method: :post %>ログインしてください
+
 </div>

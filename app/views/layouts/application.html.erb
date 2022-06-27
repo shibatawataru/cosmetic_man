@@ -18,11 +18,27 @@
     </main>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <% if customer_signed_in? %>
+      <%= link_to public_items_path,class: 'navbar-brand' do %>
+        <h1 class="brand-title text-center">
+          <span class="text-primary">C</span>osmetic <span class="text-success">M</span>an
+          <span class="d-block sub-brand-title">男性のための最適な化粧品を</span>
+        </h1>
+      <% end %>
+      <% elsif admin_signed_in? %>
+      <%= link_to admin_items_path,class: 'navbar-brand' do %>
+        <h1 class="brand-title text-center">
+          <span class="text-primary">C</span>osmetic <span class="text-success">M</span>an
+          <span class="d-block sub-brand-title">男性のための最適な化粧品を</span>
+        </h1>
+      <% end %>
+      <% else %>
       <%= link_to root_path, class: 'navbar-brand' do %>
         <h1 class="brand-title text-center">
           <span class="text-primary">C</span>osmetic <span class="text-success">M</span>an
           <span class="d-block sub-brand-title">男性のための最適な化粧品を</span>
         </h1>
+      <% end %>
       <% end %>
       <button class="navbar-toggler"
               type="button"
@@ -51,6 +67,10 @@
               <% end %>
             </li>
             <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to admin_tags_path, class:"nav-link" do %>
+                <i class="fas fa-tags"></i> ジャンル一覧・追加
+              <% end %>
             <li class="nav-item">
               <%= link_to admin_items_path, class:"nav-link" do %>
                 <i class="fas fa-air-freshener"></i> 商品一覧

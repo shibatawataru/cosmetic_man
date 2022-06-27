@@ -12,7 +12,7 @@ class Public::ItemsController < ApplicationController
     #tag_list=params[:item][:name].split(',')
     if @item.save
       @item.save_tag(params[:item][:item_tags][:tag_id])
-      flash[:notice] = "You have created item successfully."
+      flash[:notice] = "商品を投稿しました"
       redirect_to public_item_path(@item.id)
     else
       @customer = current_customer
@@ -44,7 +44,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       @item.save_tag(params[:item][:item_tags][:tag_id])
-      flash[:notice] = "You have updated item successfully."
+      flash[:notice] = "商品を更新しました"
       redirect_to public_item_path(@item.id)
     else
       render :edit

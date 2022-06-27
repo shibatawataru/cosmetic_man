@@ -4,7 +4,7 @@
 <h2>会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer' do |f| %>
-  
+  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :名前 %><br />
@@ -37,6 +37,7 @@
     <h2>既に会員登録済みの方</h2>
   </div>
 　<div>
-    <%= render "public/shared/links" %>からログインしてください。
+    <%= render "public/shared/links" %>からログインしてください。<br />
+    またはゲストとしてログインしたい場合は<%= link_to 'こちらから', customers_guest_sign_in_path, method: :post %>
   </div>
 

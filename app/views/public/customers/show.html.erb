@@ -1,44 +1,45 @@
- <h2>マイページ</h2>
-<%= render 'public/customers/customerinfo', customer: @customer %>
-
-     <h2>商品一覧</h2>
-      <table>
-       <thead>
-         <tr>
-         <th>商品画像<th>
-         <th>商品名</th>
-         <th>商品価格</th>
-         <th>レビュー</th>
-         </tr>
-       </thead>
-      <tbody>
-       <% @item.each do |item| %>
-        <tr>
-         <td><%= image_tag item.get_product_image(200,200) %></td>
-         <td>
-           <%= link_to public_item_path(item) do %>
-           <%= item.itemname %>
-           <% end %>
-         </td>
-         <td><%= item.price %>円</td>
-         <td><%= item.evaluation %>
-         <div id='evaluation-rate<%= item.id %>'></div>
-         <script>
-         $('#evaluation-rate<%= item.id %>').empty();
-         $("#evaluation-rate<%= item.id %>").raty({
-          number: 5,
-          score: <%= item.evaluation %>,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: "<%= asset_path('star-half.png') %>",
-          readOnly: true,
-
-          scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
-          half: true,
-         });
-         </script>
-         </td>
-        </tr>
+ <div class='container'>
+   <div class="row">
+     <div class="col-3">
+      <h2>マイページ</h2>
+      <%= render 'public/customers/customerinfo', customer: @customer %>
+     </div>
+          <% if @customer %>
+          <%= link_to "+", new_public_item_path, class: "btn btn-default bg-primary text-white", style: "border-radius: 100%" %>
         <% end %>
-       </tbody>
-      </table>
+      <div class="mx-auto col-9" style="display: flex;">
+   
+
+      <% @item.each do |item| %>
+         <div class="col-md-4">
+          <div class="card mb-3">
+           <%= image_tag item.product_image, class: 'bd-placeholder-img card-img-top product-card-image' %>
+            <div class="card-body">
+             <h5 class="card-title"><%= link_to item.itemname, public_item_path(item.id) %></h5>
+              <div class="card-text">
+               <%= simple_format(item.body) %>
+              </div>
+              <div class="card-integer">
+               <%= item.price %>円
+              </div>
+              <div class="item-evaluation-<%= item.id %>" data-score="<%= item.evaluation %>">
+               <script>
+                $('.item-evaluation-<%= item.id %>').empty();
+                $('.item-evaluation-<%= item.id %>').raty({
+                  readOnly: true,
+                  score: function() {
+                    return $(this).attr('data-score');
+                  },
+                  starOff: '<%= asset_path('star-off.png') %>',
+                  starOn: '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                });
+               </script>
+              </div>
+             </div>
+            </div>
+          </div>
+        <% end %>
+       </div>
+     </div>
+    </div>

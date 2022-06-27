@@ -2,10 +2,14 @@
   <%= render 'public/customers/customerinfo', customer: @customer %>
   <h2>商品詳細</h2>
   <div>
+    <% if @customer %>
+      <%= link_to "+", new_public_item_path, class: "btn btn-default bg-primary text-white", style: "border-radius: 100%" %>
+    <% end %>
     <% @item.tags.each do |tag| %>
-      <%= "#{tag.name} ( #{tag.items.count} )" %>
+      <%= link_to "#{tag.name} ( #{tag.items.count} )", public_items_tag_search_path(tag_id: tag.id) %>
     <% end %>
   </div>
+
 
   <div><%= image_tag @item.get_product_image(200,200), class: 'img-fluid' %></div>
 
@@ -47,11 +51,11 @@
   </script>
 
     <div><% if @item.customer == current_customer %>
-        <%= link_to "編集", edit_public_item_path(@item), class: "btn btn-sm btn-success" %>
+        <%= link_to "編集", edit_public_item_path(@item), class: "btn btn-outline-success" %>
         <% end %>
     </div>
     <div><% if @item.customer == current_customer %>
-        <%= link_to "削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+        <%= link_to "削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-outline-danger" %>
         <% end %>
     </div>
 

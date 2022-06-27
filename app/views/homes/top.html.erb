@@ -1,11 +1,14 @@
-<h1 class="brand-title text-center">
-  <span class="text-primary">C</span>osmetic <span class="text-success">M</span>an
-  <span class="d-block sub-brand-title">男性のための最適な化粧品を</span>
-</h1>
-
-<div>
-<%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "btn btn-outline-success" %>
-
-<%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-success" %>
-
-<%= link_to "会員登録",new_customer_registration_path, class: "btn btn-outline-success" %>
+<div class="container">
+  <div class="row">
+    <h1 class="brand-title text-center">
+      <span class="text-primary">C</span>osmetic <span class="text-success">M</span>an
+      <span class="d-block sub-brand-title">男性のための最適な化粧品を</span>
+    </h1>
+    
+     <div>
+      <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "btn btn-outline-success mb-3" %>
+      <%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-success mb-3" %>
+      <%= link_to "会員登録",new_customer_registration_path, class: "btn btn-outline-success mb-3" %>
+     </div>
+  </div>
+</div>

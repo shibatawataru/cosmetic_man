@@ -1,3 +1,6 @@
+<div class="container">
+ <div class="row">
+  <div class="col-mt-3">
 <h2>商品投稿</h2>
 <%#= form_with model: @tags, url:public_items_path do |f| %>
      <%#= f.collection_check_boxes :name, @tags, :id, :name %>
@@ -13,8 +16,8 @@
 <div><%= f.text_area :body %></div>
 <div><%= f.label :price, '商品価格' %></div>
 <div><%= f.text_field :price %>円</div>
+<%= f.label :evaluation,'評価', class:'col-md-3 col-form-label' %>
 <div class="form-group row" id="star">
-    <%= f.label :evaluation,'評価', class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :evaluation, id: :item_evaluation %>
 </div>
 
@@ -23,7 +26,7 @@
 
   <!-- 評価javascript -->
   <script>
-  $('.post_cosme-evaluation').empty();
+  $('#star').empty();
   $('#star').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
@@ -33,4 +36,8 @@
     scoreName: 'item[evaluation]]', //登録するモデル名とカラム名を記述
     half: true,
   });
+
   </script>
+  </div>
+ </div>
+</div>
