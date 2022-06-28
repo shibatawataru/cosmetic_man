@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :tags, only: [:index, :edit, :create, :update, :destroy, :edit]
+    resources :tags, only: [:index, :edit, :create, :update, :edit]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

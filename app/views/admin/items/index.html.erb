@@ -4,7 +4,7 @@
   <div>
    <!--タグリスト-->
    <% @tag_list.each do |tag|%>
-    <%= link_to "#{tag.name} ( #{tag.items.count} )", public_items_tag_search_path(tag_id: tag.id) %>
+    <%= link_to "#{tag.name} ( #{tag.items.count} )", admin_items_tag_search_path(tag_id: tag.id) %>
    <% end %>
    </div>
     <% @items.each do |item| %>
@@ -13,9 +13,7 @@
        <%= image_tag item.product_image, class: 'bd-placeholder-img card-img-top product-card-image' %>
         <div class="card-body">
          <h5 class="card-title"><%= link_to item.itemname, admin_item_path(item.id) %></h5>
-          <div class="card-text">
-           <%= simple_format(item.body) %>
-          </div>
+
           <div class="card-integer">
            <%= item.price %>円
           </div>

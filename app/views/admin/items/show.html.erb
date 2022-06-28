@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render 'public/customers/customerinfo', customer: @customer %>
   <h2>商品詳細</h2>
   <div>
     <% @item.tags.each do |tag| %>

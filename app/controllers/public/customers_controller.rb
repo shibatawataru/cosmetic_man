@@ -19,10 +19,6 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
-
    private
 
   def customer_params

@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     #中間テーブルを使用して、itemに紐づくtagを取得して、@itemに格納したい
@@ -16,7 +17,9 @@ class Public::ItemsController < ApplicationController
       redirect_to public_item_path(@item.id)
     else
       @customer = current_customer
-      @items = item.all
+     #中間テーブルを使用して、itemに紐づくtagを取得して、@itemに格納したい
+      @item = Item.new(params[:id])
+      @tags = Tag.all
       render :new
     end
   end
@@ -47,6 +50,7 @@ class Public::ItemsController < ApplicationController
       flash[:notice] = "商品を更新しました"
       redirect_to public_item_path(@item.id)
     else
+      @tags = Tag.all
       render :edit
     end
   end

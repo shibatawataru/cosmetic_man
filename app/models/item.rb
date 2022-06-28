@@ -4,6 +4,8 @@ class Item < ApplicationRecord
     has_many :tags,through: :item_tags
     has_many :comments, dependent: :destroy
     has_one_attached :product_image
+    
+    validates :itemname, :body, :price, :evaluation, presence: true
 
     def get_product_image(width, height)
       unless product_image.attached?

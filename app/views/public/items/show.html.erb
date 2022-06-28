@@ -3,7 +3,7 @@
   <h2>商品詳細</h2>
   <div>
     <% if @customer %>
-      <%= link_to "+", new_public_item_path, class: "btn btn-default bg-primary text-white", style: "border-radius: 100%" %>
+      <%= link_to "新規投稿", new_public_item_path, class: "btn btn-outline-primary" %>
     <% end %>
     <% @item.tags.each do |tag| %>
       <%= link_to "#{tag.name} ( #{tag.items.count} )", public_items_tag_search_path(tag_id: tag.id) %>
