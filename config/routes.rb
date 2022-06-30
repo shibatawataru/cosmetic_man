@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     passwords: 'public/passwords'
   }
+  
+  # 退会確認画面
+  get '/customers/:id/unsubscribe' => 'public/customers#unsubscribe', as: 'customer_unsubscribe'
+  # 論理削除用のルーティング
+  patch '/customers/:id/withdrawal' => 'public/customers#withdrawal', as: 'customers_withdrawal'
+
   devise_for :admins, skip: [:registrations, :passwords] , controllers: {
     sessions: "admin/sessions"
   }

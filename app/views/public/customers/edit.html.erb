@@ -16,7 +16,7 @@
        <td><%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"introduction"%></td>
       </tr>
      </table>
-    <%= f.submit "プロフィール更新" %>
+    <%= f.submit "プロフィール更新", class:"btn btn-danger my-3 ml-4 col-3" %><%= link_to "退会する", customer_unsubscribe_path, class:"btn btn-warning text-light my-3 ml-4" %>
     <% end %>
   </div>
 </div>

@@ -17,6 +17,20 @@
               <div class="card-integer">
                 <%= item.item.price %>円
               </div>
+              <div class="item-evaluation-<%= item.item.id %>" data-score="<%= item.item.evaluation %>">
+              <script>
+              $('.item-evaluation-<%= item.item.id %>').empty();
+              $('.item-evaluation-<%= item.item.id %>').raty({
+                readOnly: true,
+                score: function() {
+                  return $(this).attr('data-score');
+                },
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn: '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+              });
+              </script>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@
       <% if @customer %>
           <%= link_to "新規投稿", new_public_item_path, class: "btn btn-outline-primary" %>
         <% end %>
+        
      </div>
       <div class="mx-auto col-9" style="display: flex; flex-wrap: wrap;">
       <% @item.each do |item| %>
