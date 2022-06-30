@@ -11,9 +11,6 @@
             <%= image_tag item.item.product_image, class: 'bd-placeholder-img card-img-top product-card-image' %>
             <div class="card-body">
               <h5 class="card-title"><%= link_to item.item.itemname, public_item_path(item.item.id) %></h5>
-              <div class="card-text">
-                <%= simple_format(item.item.body) %>
-              </div>
               <div class="card-integer">
                 <%= item.item.price %>円
               </div>
