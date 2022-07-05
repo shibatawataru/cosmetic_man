@@ -1,8 +1,10 @@
 <div class="row">
- <div class="col-2">
+ <div class="col-1">
  </div>
-  <div class="col-10">
+  <div class="col-mt-1">
    <h1>プロフィール編集</h1>
+  </div>
+  <div class="col-10">
     <%= form_with url: public_customer_path(@customer), model: @customer, method: :patch do |f| %>
      <table class="table my-3">
       <tr>
@@ -16,7 +18,7 @@
        <td><%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"introduction"%></td>
       </tr>
      </table>
-    <%= f.submit "プロフィール更新", class:"btn btn-danger my-3 ml-4 col-3" %><%= link_to "退会する", customer_unsubscribe_path, class:"btn btn-warning text-light my-3 ml-4" %>
+    <%= f.submit "プロフィール更新", class:"btn btn-outline-info my-3 ml-4" %><%= link_to "退会する", customer_unsubscribe_path, class:"btn btn-outline-danger my-3 ml-4" %>
     <% end %>
   </div>
 </div>
