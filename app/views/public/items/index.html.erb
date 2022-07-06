@@ -1,9 +1,9 @@
 <div class='container'>
- <div class="row">
+ <div class="row my-3">
+  <div class="col-10">
   <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
-  <div>
    <% if @customer %>
-    <%= link_to "新規投稿", new_public_item_path, class: "btn btn-outline-primary" %>
+    <%= link_to "新規投稿", new_public_item_path, class: "btn btn-outline-primary" %><br>
    <% end %>
    <!--タグリスト-->
    <% @tag_list.each do |tag|%>
