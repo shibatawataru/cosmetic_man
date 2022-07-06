@@ -1,11 +1,13 @@
 <div class="container">
+ <div class="row">
+  <div class="col-md-3">
   <%= render 'public/customers/customerinfo', customer: @customer %>
+  </div>
+  <div class="col-md-8 offset-md-1">
   <h2>商品詳細</h2>
-  <div>
     <% @item.tags.each do |tag| %>
       <%= "#{tag.name} ( #{tag.items.count} )" %>
     <% end %>
-  </div>
 
   <div><%= image_tag @item.get_product_image(200,200), class: 'img-fluid' %></div>
 
@@ -45,7 +47,7 @@
       },
     });
   </script>
-  
+
     <div>
         <%= link_to "削除", admin_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-outline-danger" %>
     </div>
@@ -53,4 +55,6 @@
   <div class="comments">
     <%= render 'public/comments/item_comments', item: @item %>
   </div>
+  </div>
+ </div>
 </div>
