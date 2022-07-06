@@ -6,7 +6,7 @@
   <div class="col-md-8 offset-md-1">
   <h2>商品詳細</h2>
     <% @item.tags.each do |tag| %>
-      <%= "#{tag.name} ( #{tag.items.count} )" %>
+      <%= link_to "#{tag.name} ( #{tag.items.count} )", admin_items_tag_search_path(tag_id: tag.id) %>
     <% end %>
 
   <div><%= image_tag @item.get_product_image(200,200), class: 'img-fluid' %></div>
