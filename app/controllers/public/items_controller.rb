@@ -72,6 +72,7 @@ class Public::ItemsController < ApplicationController
   def ensure_customer
     @items = current_customer.items
     @item = @items.find_by(id: params[:id])
+    flash[:notice]="権限がありません"
     redirect_to public_item_path unless @item
   end
 
