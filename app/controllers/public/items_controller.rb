@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_customer, only: [:edit, :update, :destroy]
 
   def new
     #中間テーブルを使用して、itemに紐づくtagを取得して、@itemに格納したい
@@ -33,7 +34,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @customer = @item.customer
+    @customer = current_customer
     @comment = Comment.new
     # @item_tags = @item.tags
   end
@@ -67,6 +68,12 @@ class Public::ItemsController < ApplicationController
   end
 
   private
+  
+  def ensure_customer
+    @items = current_customer.items
+    @item = @items.find_by(id: params[:id])
+    redirect_to public_item_path unless @item
+  end
 
   def item_params
     params.require(:item).permit(:body, :itemname, :price, :product_image, :evaluation)
