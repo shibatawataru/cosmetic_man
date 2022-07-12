@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  
+  before_action :ensure_current_customer, only: [:edit, :update]
 
   def edit
     @customer = Customer.find(params[:id])
@@ -30,6 +30,13 @@ class Public::CustomersController < ApplicationController
   end
 
    private
+   
+  def ensure_current_customer
+    if current_customer.id != params[:id].to_i
+    flash[:notice]="権限がありません"
+    redirect_to public_items_path
+    end
+  end
 
   def customer_params
     params.require(:customer).permit(:name, :introduction, :profile_image)
