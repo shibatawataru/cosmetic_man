@@ -11,7 +11,6 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    #tag_list=params[:item][:name].split(',')
     if @item.save
       @item.save_tag(params[:item][:item_tags][:tag_id])
       flash[:notice] = "商品を投稿しました"
@@ -36,7 +35,6 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @customer = current_customer
     @comment = Comment.new
-    # @item_tags = @item.tags
   end
 
   def edit
