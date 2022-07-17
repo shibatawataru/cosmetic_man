@@ -2,9 +2,7 @@
  <div class="row my-3">
   <div class="col-mt-3">
 <h2>商品投稿</h2>
-<%#= form_with model: @tags, url:public_items_path do |f| %>
-     <%#= f.collection_check_boxes :name, @tags, :id, :name %>
-     <%# end %>
+
 <%= form_with model: @item, url:public_items_path do |f| %>
   <%= f.fields_for :item_tags do |tag| %>
     <div><%= tag.collection_check_boxes :tag_id, @tags, :id, :name %></div>
