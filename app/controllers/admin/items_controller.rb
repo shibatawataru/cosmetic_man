@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :admin_check
   
   def index
-    @items = Item.all.order("id DESC")
+    @items = Item.page(params[:page]).per(6).order("id DESC")
     @quantity = Item.count
     @tag_list = Tag.all
   end

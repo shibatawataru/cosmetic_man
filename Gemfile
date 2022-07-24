@@ -59,6 +59,8 @@ gem 'devise'
 
 gem 'image_processing', '~> 1.2'
 
+gem 'kaminari','~> 1.2.1'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

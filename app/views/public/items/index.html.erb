@@ -16,11 +16,11 @@
        <%= image_tag item.product_image, class: 'bd-placeholder-img card-img-top product-card-image' %>
         <div class="card-body">
          <h5 class="card-title"><%= link_to item.itemname, public_item_path(item.id) %></h5>
-   
+
           <div class="card-integer">
            <%= item.price %>円
           </div>
-          
+
           <div class="item-evaluation-<%= item.id %>" data-score="<%= item.evaluation %>">
            <script>
             $('.item-evaluation-<%= item.id %>').empty();
@@ -41,3 +41,4 @@
     <% end %>
  </div>
 </div>
+<%= paginate @items %>

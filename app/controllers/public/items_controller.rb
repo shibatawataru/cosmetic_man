@@ -26,7 +26,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @customer = current_customer
-    @items = Item.all.order("id DESC")
+    @items = Item.page(params[:page]).per(6).order("id DESC")
     @quantity = Item.count
     @tag_list = Tag.all
   end
