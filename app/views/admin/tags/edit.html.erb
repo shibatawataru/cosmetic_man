@@ -1,29 +1,29 @@
 <div class="row my-5">
  <div class="col-4">
-  </div>
-   <div class="col-4">
-    <h2>ジャンル編集</h2>
-   </div>
-   <div class="col-4">
-   </div>
  </div>
+  <div class="col-4">
+   <h2>ジャンル編集</h2>
+  </div>
+  <div class="col-4">
+  </div>
+</div>
 
  <div class="row">
   <div class="col-4">
-   </div>
-    <div class="col-4">
-     <%= form_with url: admin_tag_path(@tag), model: @tag do |f| %>
-      <table class="table">
-       <tr>
-        <th><%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %></th>
+  </div>
+   <div class="col-4">
+    <%= form_with url: admin_tag_path(@tag), model: @tag do |f| %>
+     <table class="table">
+      <tr>
+       <th><%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %></th>
         <td>
          <%= f.submit "変更を保存", class:"btn btn-outline-info" %>
          <%= link_to "削除", admin_tag_path, method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-outline-danger" %>
         </td>
-       </tr>
-      </table>
-     <% end %>
-    </div>
+      </tr>
+     </table>
+    <% end %>
+   </div>
    <div class="col-4">
-  </div>
-</div>
+   </div>
+ </div>
