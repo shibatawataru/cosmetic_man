@@ -1,24 +1,21 @@
-<div class="row">
- <div class="col-1">
- </div>
-  <div class="col-mt-1">
-   <h1>プロフィール編集</h1>
+<div class="container">
+ <div class="row my-3">
+  <div class="col-1">
   </div>
-  <div class="col-10">
+  <div class="col-3">
+  </div>
+  <div class="col-8">
+   <h1>プロフィール編集</h1>
     <%= form_with url: public_customer_path(@customer), model: @customer, method: :patch do |f| %>
-     <table class="table my-3">
-      <tr>
-       <th><%= f.label :名前 %></th>
-       <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"name" %></td>
-      
-       <th><%= f.label :プロフィール画像 %></th>
-       <td><%= f.file_field :profile_image, placeholder: "Profile image", accept: "image/*" %></td>
-      
-       <th><%= f.label :自己紹介 %></td>
-       <td><%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"introduction"%></td>
-      </tr>
-     </table>
-    <%= f.submit "プロフィール更新", class:"btn btn-outline-info my-3 ml-4" %><%= link_to "退会する", customer_unsubscribe_path, class:"btn btn-outline-danger my-3 ml-4" %>
+     
+     <div><%= f.file_field :profile_image, placeholder:"profile_image", accept: "image/*" %></div>
+     <div><%= f.label :name, '名前' %></div>
+     <div><%= f.text_field :name %></div>
+     <div><%= f.label :introduction, '自己紹介' %></div>
+     <div><%= f.text_area :introduction %></div>
+            
+    <%= f.submit "プロフィール更新", class:"btn btn-outline-info my-3 ml-2" %><%= link_to "退会する", customer_unsubscribe_path, class:"btn btn-outline-danger my-3 ml-2" %>
     <% end %>
   </div>
+ </div>
 </div>

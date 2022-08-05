@@ -56,14 +56,12 @@
        <% if @item.customer == current_customer %>
         <%= link_to "編集", edit_public_item_path(@item), class: "btn btn-outline-success" %>
        <% end %>
-      </div>
-      <div>
        <% if @item.customer == current_customer %>
         <%= link_to "削除", public_item_path(@item), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-outline-danger" %>
        <% end %>
       </div>
 
-     <div class="new-comment">
+     <div class="new-comment my-3">
       <%= render 'public/comments/form', item: @item, comment: @comment %>
      </div>
      <!--コメント一覧部分-->
