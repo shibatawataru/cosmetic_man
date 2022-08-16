@@ -4,7 +4,6 @@
   </div>
   <div class="col-mt-9">
    <h2>商品投稿</h2>
-
     <%= form_with model: @item, url:public_items_path do |f| %>
     <%= f.fields_for :item_tags do |tag| %>
      <div><%= tag.collection_check_boxes :tag_id, @tags, :id, :name %></div>
