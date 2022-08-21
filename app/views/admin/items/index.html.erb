@@ -2,7 +2,6 @@
  <div class="row my-3">
   <div class="col-10">
   <h1>商品一覧（ 全 <%= @quantity %> 件 ）</h1>
-  
    <!--タグリスト-->
    <% @tag_list.each do |tag|%>
     <%= link_to "#{tag.name} ( #{tag.items.count} )", admin_items_tag_search_path(tag_id: tag.id) %>
